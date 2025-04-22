@@ -68,7 +68,7 @@ export default function Action({ actionId, additionalClasses }) {
 
 		let current = true
 		void (async () => {
-			const data = await (await fetch(`https://xivapi.com/Action/${actionId}?columns=Icon,Name,ActionCategoryTargetID`, {
+			const data = await (await fetch(`https://cafemaker.wakingsands.com/Action/${actionId}?columns=Icon,Name,ActionCategoryTargetID`, {
 				mode: "cors"
 			})).json()
 			if (current) {
@@ -94,7 +94,7 @@ export default function Action({ actionId, additionalClasses }) {
 					? `gcd ${additionalClasses}`
 					: `ogcd ${additionalClasses}`
 			}
-			src={`https://xivapi.com/${apiData.Icon}`}
+			src={`https://cafemaker.wakingsands.com/${apiData.Icon}`}
 			alt={apiData.Name || ""}
 		/>
 	)
