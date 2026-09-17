@@ -68,9 +68,9 @@ export default function Action({ actionId, additionalClasses }) {
 
 		let current = true
 		void (async () => {
-			const data = await (await fetch(`https://cafemaker.wakingsands.com/Action/${actionId}?columns=Icon,Name,ActionCategoryTargetID`, {
+			const data = await (await fetch(`https://xivapi-v2.xivcdn.com/api/sheet/Action/${actionId}?columns=Icon,Name,ActionCategory`, {
 				mode: "cors"
-			})).json()
+			})).json().fields;
 			if (current) {
 				actionMap.set(actionId, data)
 				setApiData(data)
@@ -90,11 +90,11 @@ export default function Action({ actionId, additionalClasses }) {
 		<img
 			className={
 				gcdOverrides.has(actionId) ||
-				(!ogcdOverrides.has(actionId) && apiData.ActionCategoryTargetID !== 4)
+				(!ogcdOverrides.has(actionId) && apiData.ActionCategory.value !== 4)
 					? `gcd ${additionalClasses}`
 					: `ogcd ${additionalClasses}`
 			}
-			src={`https://cafemaker.wakingsands.com/${apiData.Icon}`}
+			src={`https://xivapi-v2.xivcdn.com/api/asset?path=${encodeURIComponent(apiData.Icon.path)}`}
 			alt={apiData.Name || ""}
 		/>
 	)
