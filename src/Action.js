@@ -68,12 +68,12 @@ export default function Action({ actionId, additionalClasses }) {
 
 		let current = true
 		void (async () => {
-			const data = await (await fetch(`https://xivapi-v2.xivcdn.com/api/sheet/Action/${actionId}?columns=Icon,Name,ActionCategory`, {
+			const data = await (await fetch(`https://xivapi-v2.xivcdn.com/api/sheet/Action/${actionId}?fields=Icon,Name,ActionCategory`, {
 				mode: "cors"
-			})).json().fields;
+			})).json();
 			if (current) {
-				actionMap.set(actionId, data)
-				setApiData(data)
+				actionMap.set(actionId, data.fields)
+				setApiData(data.fields)
 			}
 		})()
 
